@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         GradeCalculator gradeCalculator = new GradeCalculator();
-        Printer printer = new Printer();
-
+        ConsolePrinter consolePrinter = new ConsolePrinter();
+        TextPrinter textPrinter = new TextPrinter();
 
         int[] pointArray = new int[SUBJECT_COUNT];
 
@@ -19,24 +19,26 @@ public class Main {
             pointArray[i] = scan.nextInt();
         }
 
+        String[] grades = new String[SUBJECT_COUNT];
         for(int i=0; i < pointArray.length; i++){
             // 입력받은 점수를 가지고 학점을 계산한다.
             String grade = gradeCalculator.getGrade(pointArray[i]);
-            // 구한 학점을 출력한다.
-            printer.printGrade(grade);
+
+            // 학점 배열에 학점들 저장
+            grades[i] = grade;
         }
 
         // 총점을 구한다
         int sum = gradeCalculator.getSum(pointArray);
 
-        // 총점을 출력한다
-        printer.printSum(sum);
-
         // 평균을 구한다
         double average = gradeCalculator.getAverage(sum, SUBJECT_COUNT);
 
-        // 평균을 출력한다
-        printer.printAverage(average);
+        // 콘솔에 출력한다
+        consolePrinter.print(grades, sum, average);
+
+        // 파일에 출력한다
+        textPrinter.printToFile(grades, sum, average);
     }
 
 }

@@ -1,15 +1,14 @@
 package com.parkstar;
 
 public class Printer {
-    public void printGrade(String grade) {
-        System.out.println("학점: " + grade);
-    }
+    protected String getResultString(String[] grades, int sum, double average) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String grade : grades) {
+            stringBuilder.append("학점: " + grade + "\n");
+        }
+        stringBuilder.append("총점 : " + sum + "\n");
+        stringBuilder.append("평균 : " + average + "\n");
 
-    public void printSum(int sum){
-        System.out.println("총점 : " + sum);
-    }
-
-    public void printAverage(double average){
-        System.out.println("평균 : " + average);
+        return stringBuilder.toString();
     }
 }

@@ -4,3 +4,5 @@
 Grade\.iml
 
 *.class
+
+out/
